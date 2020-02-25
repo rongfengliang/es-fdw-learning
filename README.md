@@ -44,3 +44,23 @@ VALUES
         'spike'
     );
 ```
+## with postgres_fdw
+
+```code
+create extension postgres_fdw;
+
+CREATE SERVER pg_server
+  FOREIGN DATA WRAPPER postgres_fdw
+  OPTIONS (host 'psotgres-fdw', dbname 'postgres');
+
+CREATE USER MAPPING FOR postgres
+  SERVER pg_server
+  OPTIONS (user 'postgres', password 'dalong');
+
+CREATE SCHEMA app;
+IMPORT FOREIGN SCHEMA public
+  FROM SERVER pg_server
+  INTO app;
+
+select * from app.articles_es;
+```

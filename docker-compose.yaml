@@ -17,3 +17,9 @@ services:
       - "5432:5432"
     environment:
       - "POSTGRES_PASSWORD=dalong"
+  pg:
+    image: dalongrong/pgspider:pg_cron
+    ports: 
+    - "5433:5432"
+    environment:
+      - "POSTGRES_PASSWORD=dalong"
